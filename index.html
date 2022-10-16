@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <title>Kamehameha Effect</title>
+    </head>
+    <body>
+        <p>Vous devez montrer un objet bleu foncé à la caméra comme le capuchon d'un stylo bleu par exemple</p>
+        <canvas id="myCanvas"></canvas>
+        <script>
+            const canvas=document.getElementById("myCanvas");
+            const ctx=canvas.getContext("2d");
+
+            let kame;
+
+            navigator.mediaDevices.getUserMedia({video:true,audio:true})
+                .then(function(rawData){
+                    const audio = new AudioContext();
+                    audio.microphone = audio.createMediaStreamSource(rawData);
+
+                    const video=document.createElement("video");
+                    video.srcObject=rawData;
+                    //video.src="vid.mp4";
+                    video.play();
+                    video.volume=0;
+                    video.onloadeddata=function(){
+                        canvas.width=video.videoWidth;
+                        canvas.height=video.videoHeight;
+                        kame=new KameHameHa(canvas,video,audio);
+                    }
+                }).catch(function(err){alert(err)})
+        </script>
+        <script src="vfx.js"></script>
+        <script src="kamehameha.js"></script>
+        <script src="utils.js"></script>
+    </body>
+</html>

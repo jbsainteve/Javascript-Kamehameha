@@ -1,0 +1,19 @@
+body{
+    background:black;
+    margin:0;
+    /* overflow:hidden; */
+}
+p {
+    color: white;
+    text-align: center;
+    font-size: 1rem; 
+}
+canvas{
+    border:2px solid white;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    /* min-width:100vmin; */
+    /* min-height:100vmin; */
+}
